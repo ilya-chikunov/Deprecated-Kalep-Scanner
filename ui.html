@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Figma Plugin</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+      margin: 0;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    button {
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #2A9C64;
+      color: white;
+    }
+    button:hover {
+      background-color: #217D50;
+    }
+    .secondary {
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #e0e0e0;
+      color: grey;
+    }
+    .secondary:hover {
+      background-color: #cdcdcd;
+    }
+  </style>
+</head>
+<body>
+  <button id="highlight-instances">Highlight Old Kalep Components</button>
+  <button id="highlight-styles">Highlight Old Kalep Styles</button>
+  <button id="debug-show-id" class="secondary">Debug: show ID</button>
+
+  <script>
+    // Highlight Old Kalep Components
+    document.getElementById('highlight-instances').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'run' } }, '*');
+    };
+
+    // Highlight Deprecated Styles
+    document.getElementById('highlight-styles').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'highlightStyles' } }, '*');
+    };
+
+    // Debug: show ID
+    document.getElementById('debug-show-id').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'debugShowId' } }, '*');
+    };
+  </script>
+</body>
+</html>
